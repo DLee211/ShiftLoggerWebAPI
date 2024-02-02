@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShiftLoggerWebAPI", "ShiftLoggerWebAPI\ShiftLoggerWebAPI.csproj", "{3056B001-0B3F-4EF5-B4D1-6B17CF630E7B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3056B001-0B3F-4EF5-B4D1-6B17CF630E7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3056B001-0B3F-4EF5-B4D1-6B17CF630E7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3056B001-0B3F-4EF5-B4D1-6B17CF630E7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3056B001-0B3F-4EF5-B4D1-6B17CF630E7B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
