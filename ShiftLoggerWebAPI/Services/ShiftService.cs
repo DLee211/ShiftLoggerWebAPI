@@ -14,14 +14,54 @@ public class ShiftService
     
     //CRUD
 
-    public IEnumerable<Shift> GetAllShifts()
+    public IEnumerable<ShiftDto> GetAllShifts()
     {
-        return _dbContext.Shifts.ToList();
+        return _dbContext.Shifts.Include(s => s.Worker)
+            .Select(s => new ShiftDto
+            {
+                ShiftId = s.ShiftId,
+                StartTime = s.StartTime,
+                EndTime = s.EndTime,
+                WorkerId = s.WorkerId,
+                Worker = new WorkerDto
+                {
+                    WorkerId = s.WorkerId,
+                    FirstName = s.Worker.FirstName,
+                    LastName = s.Worker.LastName
+                }
+            })
+            .ToList();
+            
     }
 
-    public Shift GetShiftById(int shiftId)
+    public ShiftDto  GetShiftById(int shiftId)
     {
-        return _dbContext.Shifts.Find(shiftId);
+        var shiftEntity = _dbContext.Shifts
+            .Include(s => s.Worker)
+            .FirstOrDefault(s => s.ShiftId == shiftId);
+        
+        if (shiftEntity == null)
+        {
+            return null; // Or handle the null case based on your requirements
+        }
+
+        // Map the Shift entity to ShiftDto
+        var shiftDto = new ShiftDto
+        {
+            ShiftId = shiftEntity.ShiftId,
+            StartTime = shiftEntity.StartTime,
+            EndTime = shiftEntity.EndTime,
+            WorkerId = shiftEntity.WorkerId,
+            Worker = new WorkerDto
+            {
+                WorkerId = shiftEntity.Worker?.WorkerId ?? 0, // Ensure not null
+                FirstName = shiftEntity.Worker?.FirstName,
+                LastName = shiftEntity.Worker?.LastName
+            }
+        };
+
+        return shiftDto;
+        
     }
 
     public void AddShift(Shift shift)
@@ -49,5 +89,10 @@ public class ShiftService
     public TimeSpan CalculateShiftDuration(Shift shift)
     {
         return shift.EndTime - shift.StartTime;
+    }
+    
+    public bool ShiftExists(int shiftId)
+    {
+        return _dbContext.Shifts.Any(s => s.ShiftId == shiftId);
     }
 }

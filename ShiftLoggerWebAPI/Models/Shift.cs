@@ -15,3 +15,12 @@ public class Shift
     public int WorkerId { get; set; }
     public Worker Worker { get; set; }
 }
+
+public class ShiftDto
+{
+    public int ShiftId { get; set; }
+    public DateTime StartTime { get; set; }
+    public DateTime EndTime { get; set; }
+    public int WorkerId { get; set; }
+    public WorkerDto Worker { get; set; }
+}
