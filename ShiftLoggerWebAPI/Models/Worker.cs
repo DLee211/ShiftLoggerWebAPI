@@ -14,3 +14,10 @@ public class Worker
     
     public ICollection<Shift> Shifts { get; set; }
 }
+
+public class WorkerDto
+{
+    public int WorkerId { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+}

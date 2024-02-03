@@ -5,6 +5,12 @@ namespace ShiftLoggerWebAPI;
 
 public class ShiftDbContext : DbContext
 {
+    
+    public ShiftDbContext(DbContextOptions<ShiftDbContext> options)
+        : base(options)
+    {
+    }
+    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=workershifts.db;Integrated Security=True");
