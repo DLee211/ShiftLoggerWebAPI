@@ -15,7 +15,9 @@ public class ShiftsController:ControllerBase
     {
         _shiftService = shiftService ?? throw new ArgumentNullException(nameof(shiftService));
     }
-    
+    /// <summary>
+    /// Gets a list of shifts.
+    /// </summary>
     // GET: api/shifts
     [HttpGet]
     public ActionResult<IEnumerable<Shift>> GetShifts()
@@ -24,6 +26,10 @@ public class ShiftsController:ControllerBase
         return Ok(shifts);
     }
     
+    /// <summary>
+    /// Gets shift by Id.
+    /// </summary>
+
     [HttpGet("{id}")]
     public ActionResult<Shift> GetShiftById(int id)
     {
@@ -37,20 +43,31 @@ public class ShiftsController:ControllerBase
         return Ok(shift);
     }
     
+    /// <summary>
+    /// Add a shift to a existing worker.
+    /// </summary>
+
     // POST: api/shifts
     [HttpPost]
-    public ActionResult<Shift> CreateShift([FromBody] Shift shift)
+    public ActionResult<ShiftDto> CreateShift([FromBody] ShiftDto shiftDto)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState); // Return 400 if the provided shift data is not valid
         }
+        
+        var shiftEntity = _shiftService.MapShiftDtoToEntity(shiftDto);
 
-        _shiftService.AddShift(shift);
+        _shiftService.AddShift(shiftEntity);
+        
+        var createdShiftDto = _shiftService.MapShiftEntityToDto(shiftEntity);
 
-        return CreatedAtAction(nameof(GetShiftById), new { id = shift.ShiftId }, shift);
+        return CreatedAtAction(nameof(GetShiftById), new { id = createdShiftDto.ShiftId }, createdShiftDto);
     }
     
+    /// <summary>
+    /// Update a shift of an existing worker
+    /// </summary>
     // PUT: api/shifts/1
     [HttpPut("{id}")]
     public ActionResult UpdateShift(int id, [FromBody] Shift shift)
@@ -84,6 +101,9 @@ public class ShiftsController:ControllerBase
         return NoContent(); // Return 204 for successful update
     }
     
+    /// <summary>
+    /// Delete a shift of a existing worker.
+    /// </summary>
     // DELETE: api/shifts/1
     [HttpDelete("{id}")]
     public ActionResult<Shift> DeleteShift(int id)

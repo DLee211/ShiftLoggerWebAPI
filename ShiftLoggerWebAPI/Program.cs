@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using ShiftLoggerWebAPI;
 
@@ -24,6 +25,9 @@ IHostBuilder CreateHostBuilder(string[] args) =>
                 services.AddSwaggerGen(c =>
                 {
                     c.SwaggerDoc("v1", new OpenApiInfo { Title = "ShiftAPI", Version = "v1" });
+                    var xmlPath =
+                        "bin/Debug/ShiftLoggerWebAPI.xml";
+                    c.IncludeXmlComments(xmlPath);
                 });
 
                 services.AddControllers();
