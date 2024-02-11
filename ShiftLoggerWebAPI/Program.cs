@@ -1,56 +1,36 @@
-using System.Reflection;
-using Microsoft.EntityFrameworkCore;
+
 using ShiftLoggerWebAPI;
 
-using Microsoft.OpenApi.Models;
-using ShiftLoggerWebAPI.Services;
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var host = CreateHostBuilder(args).Build();
 
-CreateHostBuilder(args).Build().Run();
-Console.ReadLine();
-
-IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
+        // Clear and create the database
+        using (var scope = host.Services.CreateScope())
         {
-            webBuilder.ConfigureServices((context, services) =>
+            var services = scope.ServiceProvider;
+            try
             {
-                // Add DbContext
-                services.AddDbContext<ShiftDbContext>(options =>
-                    options.UseSqlServer(context.Configuration.GetConnectionString("DefaultConnection")));
-
-                // Add services
-                services.AddScoped<ShiftService>();
-
-                // Add Swagger
-                services.AddSwaggerGen(c =>
-                {
-                    c.SwaggerDoc("v1", new OpenApiInfo { Title = "ShiftAPI", Version = "v1" });
-                    var xmlPath =
-                        "bin/Debug/ShiftLoggerWebAPI.xml";
-                    c.IncludeXmlComments(xmlPath);
-                });
-
-                services.AddControllers();
-            });
-
-            webBuilder.Configure((context, app) =>
+                var context = services.GetRequiredService<ShiftDbContext>();
+                context.Database.EnsureDeleted(); // Ensure that the database is deleted
+                context.Database.EnsureCreated(); // Ensure that the database is created based on the current model
+            }
+            catch (Exception ex)
             {
-                if (context.HostingEnvironment.IsDevelopment())
-                {
-                    // Enable Swagger only in the development environment
-                    app.UseSwagger();
-                    app.UseSwaggerUI(c =>
-                    {
-                        c.SwaggerEndpoint("/swagger/v1/swagger.json", "ShiftAPI");
-                    });
-                }
+                Console.WriteLine("An error occurred while creating the database.");
+                Console.WriteLine(ex.Message);
+            }
+        }
 
-                app.UseHttpsRedirection();
-                app.UseRouting();
-                app.UseAuthorization();
-                app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapControllers();
-                });
+        host.Run();
+    }
+
+    static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
             });
-        });
+}
