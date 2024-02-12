@@ -15,16 +15,16 @@ public class ShiftService
 
     //CRUD
 
-    public IEnumerable<ShiftDto> GetAllShifts()
+    public IEnumerable<Shift> GetAllShifts()
     {
         return _dbContext.Shifts.Include(s => s.Worker)
-            .Select(s => new ShiftDto
+            .Select(s => new Shift
             {
                 ShiftId = s.ShiftId,
                 StartTime = s.StartTime,
                 EndTime = s.EndTime,
                 WorkerId = s.WorkerId,
-                Worker = new WorkerDto
+                Worker = new Worker
                 {
                     WorkerId = s.WorkerId,
                     FirstName = s.Worker.FirstName,
@@ -32,10 +32,9 @@ public class ShiftService
                 }
             })
             .ToList();
-
     }
 
-    public ShiftDto GetShiftById(int shiftId)
+    public Shift GetShiftById(int shiftId)
     {
         var shiftEntity = _dbContext.Shifts
             .Include(s => s.Worker)
@@ -47,21 +46,20 @@ public class ShiftService
         }
 
         // Map the Shift entity to ShiftDto
-        var shiftDto = new ShiftDto
+        var Shift = new Shift
         {
             ShiftId = shiftEntity.ShiftId,
             StartTime = shiftEntity.StartTime,
             EndTime = shiftEntity.EndTime,
             WorkerId = shiftEntity.WorkerId,
-            Worker = new WorkerDto
+            Worker = new Worker
             {
-                WorkerId = shiftEntity.Worker?.WorkerId ?? 0, // Ensure not null
-                FirstName = shiftEntity.Worker?.FirstName,
-                LastName = shiftEntity.Worker?.LastName
+                WorkerId = shiftEntity.WorkerId,
+                FirstName = shiftEntity.Worker.FirstName,
+                LastName = shiftEntity.Worker.LastName
             }
         };
-
-        return shiftDto;
+        return Shift;
 
     }
 
