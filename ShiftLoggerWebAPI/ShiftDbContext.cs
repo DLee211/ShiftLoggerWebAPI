@@ -80,153 +80,153 @@ public class ShiftDbContext : DbContext
         modelBuilder.Entity<Shift>().HasData(
             new Shift
             {
-                ShiftId = 1, StartTime = DateTime.Now.AddHours(-8), EndTime = DateTime.Now.AddHours(-4),
+                ShiftId = 1, StartTime = DateTime.Now.AddHours(-8).ToString(), EndTime = DateTime.Now.AddHours(-4).ToString(),
                 WorkerId = 1
             },
             new Shift
             {
-                ShiftId = 2, StartTime = DateTime.Now.AddHours(-6), EndTime = DateTime.Now.AddHours(-2),
+                ShiftId = 2, StartTime = DateTime.Now.AddHours(-6).ToString(), EndTime = DateTime.Now.AddHours(-2).ToString(),
                 WorkerId = 2
             },
             new Shift
             {
                 ShiftId = 3,
-                StartTime = DateTime.Now.AddDays(-2).AddHours(8), // Example start time for shift 3
-                EndTime = DateTime.Now.AddDays(-2).AddHours(12), // Example end time for shift 3
+                StartTime = DateTime.Now.AddDays(-2).AddHours(8).ToString(), // Example start time for shift 3
+                EndTime = DateTime.Now.AddDays(-2).AddHours(12).ToString(), // Example end time for shift 3
                 WorkerId = 3
             },
             new Shift
             {
                 ShiftId = 4,
-                StartTime = DateTime.Now.AddDays(-2).AddHours(10), // Example start time for shift 4
-                EndTime = DateTime.Now.AddDays(-2).AddHours(14), // Example end time for shift 4
+                StartTime = DateTime.Now.AddDays(-2).AddHours(10).ToString(), // Example start time for shift 4
+                EndTime = DateTime.Now.AddDays(-2).AddHours(14).ToString(), // Example end time for shift 4
                 WorkerId = 4
             },
             new Shift
             {
                 ShiftId = 5,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(8),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(12),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(8).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(12).ToString(),
                 WorkerId = 5
             },
             new Shift
             {
                 ShiftId = 6,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(9),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(13),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(9).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(13).ToString(),
                 WorkerId = 6
             },
             // Add shifts for workers 7 through 22 similarly
             new Shift
             {
                 ShiftId = 7,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(11),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(15),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(11).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(15).ToString(),
                 WorkerId = 7
             },
             new Shift
             {
                 ShiftId = 8,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(12),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(16),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(12).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(16).ToString(),
                 WorkerId = 8
             },
             new Shift
             {
                 ShiftId = 9,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(13),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(17),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(13).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(17).ToString(),
                 WorkerId = 9
             },
             new Shift
             {
                 ShiftId = 10,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(13),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(17),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(13).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(17).ToString(),
                 WorkerId = 10
             },
             new Shift
             {
                 ShiftId = 11,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(14),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(18),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(14).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(18).ToString(),
                 WorkerId = 11
             },
             new Shift
             {
                 ShiftId = 12,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(15),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(19),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(15).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(19).ToString(),
                 WorkerId = 12
             },
             new Shift
             {
                 ShiftId = 13,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(16),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(20),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(16).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(20).ToString(),
                 WorkerId = 13
             },
             new Shift
             {
                 ShiftId = 14,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(17),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(21),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(17).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(21).ToString(),
                 WorkerId = 14
             },
             new Shift
             {
                 ShiftId = 15,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(18),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(22),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(18).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(22).ToString(),
                 WorkerId = 15
             },
             new Shift
             {
                 ShiftId = 16,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(19),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(23),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(19).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(23).ToString(),
                 WorkerId = 16
             },
             new Shift
             {
                 ShiftId = 17,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(20),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(24),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(20).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(24).ToString(),
                 WorkerId = 17
             },
             new Shift
             {
                 ShiftId = 18,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(21),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(25),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(21).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(25).ToString(),
                 WorkerId = 18
             },
             new Shift
             {
                 ShiftId = 19,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(22),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(26),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(22).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(26).ToString(),
                 WorkerId = 19
             },
             new Shift
             {
                 ShiftId = 20,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(18),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(22),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(18).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(22).ToString(),
                 WorkerId = 20
             },
             new Shift
             {
                 ShiftId = 21,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(19),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(23),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(19).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(23).ToString(),
                 WorkerId = 21
             },
             new Shift
             {
                 ShiftId = 22,
-                StartTime = DateTime.Now.AddDays(-1).AddHours(20),
-                EndTime = DateTime.Now.AddDays(-1).AddHours(24),
+                StartTime = DateTime.Now.AddDays(-1).AddHours(20).ToString(),
+                EndTime = DateTime.Now.AddDays(-1).AddHours(24).ToString(),
                 WorkerId = 22
             }
         );

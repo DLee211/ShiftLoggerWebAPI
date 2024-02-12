@@ -68,43 +68,25 @@ public class ShiftsController:ControllerBase
     /// <summary>
     /// Update a shift of an existing worker
     /// </summary>
-    // PUT: api/shifts/1
+    // PUT: api/shifts/{id}
     [HttpPut("{id}")]
-    public ActionResult UpdateShift(int id, [FromBody] Shift shift)
+    public IActionResult UpdateShift(int id, [FromBody] ShiftDto updatedShiftDto)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState); // Return 400 if the provided shift data is not valid
-        }
-
-        if (id != shift.ShiftId)
-        {
-            return BadRequest("Mismatched Ids"); // Return 400 if the provided id in the URL doesn't match the shift id in the body
-        }
-
         try
         {
-            _shiftService.UpdateShift(shift);
+            _shiftService.UpdateShift(id, updatedShiftDto);
+            return NoContent(); // Return 204 for successful update
         }
-        catch (DbUpdateConcurrencyException)
+        catch (Exception ex)
         {
-            if (!_shiftService.ShiftExists(id))
-            {
-                return NotFound(); // Return 404 if the shift with the specified id is not found
-            }
-            else
-            {
-                throw;
-            }
+            return StatusCode(500, ex.Message); // Return 500 for unexpected errors
         }
-
-        return NoContent(); // Return 204 for successful update
     }
     
     /// <summary>
     /// Delete a shift of a existing worker.
     /// </summary>
-    // DELETE: api/shifts/1
+    // DELETE: api/shifts/{id}
     [HttpDelete("{id}")]
     public ActionResult<Shift> DeleteShift(int id)
     {

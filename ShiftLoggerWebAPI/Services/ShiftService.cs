@@ -71,9 +71,19 @@ public class ShiftService
         _dbContext.SaveChanges();
     }
 
-public void UpdateShift(Shift shift)
+    public void UpdateShift(int id, ShiftDto updatedShift)
     {
-        _dbContext.Entry(shift).State = EntityState.Modified;
+        var existingShift = _dbContext.Shifts.FirstOrDefault(s => s.ShiftId == id);
+        if (existingShift == null)
+        {
+            throw new ArgumentException($"Shift with ID {id} not found.");
+        }
+
+        // Update properties of existingShift with values from updatedShiftDto
+        existingShift.StartTime = updatedShift.StartTime;
+        existingShift.EndTime = updatedShift.EndTime;
+        existingShift.WorkerId = updatedShift.WorkerId;
+
         _dbContext.SaveChanges();
     }
     
@@ -87,10 +97,10 @@ public void UpdateShift(Shift shift)
         }
     }
     
-    public TimeSpan CalculateShiftDuration(Shift shift)
+   /* public TimeSpan CalculateShiftDuration(Shift shift)
     {
         return shift.EndTime - shift.StartTime;
-    }
+    }*/
     
     public bool ShiftExists(int shiftId)
     {
