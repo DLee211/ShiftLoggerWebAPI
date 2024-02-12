@@ -36,4 +36,27 @@ public class WorkersController:ControllerBase
         
         return Ok(shift);
     }
+
+    /// <summary>
+    ///  Delete worker by Id
+    /// </summary>
+    /// <returns></returns>
+    // DELETE: api/workers/{id}
+    [HttpDelete("{id}")]
+    public IActionResult DeleteWorker(int id)
+    {
+        try
+        {
+            _workerService.DeleteWorker(id);
+            return NoContent(); // Return 204 for successful deletion
+        }
+        catch (ArgumentException ex)
+        {
+            return NotFound(ex.Message); // Return 404 if worker with the specified id is not found
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message); // Return 500 for other unexpected errors
+        }
+    }
 }

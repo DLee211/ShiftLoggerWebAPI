@@ -44,4 +44,18 @@ public class WorkerService
 
         return workerDto;
     }
+
+    public void DeleteWorker(int workerId)
+    {
+        var workerEntity = _dbContext.Workers
+            .FirstOrDefault(worker => worker.WorkerId == workerId);
+        
+        if (workerEntity == null)
+        {
+            throw new ArgumentException($"Worker with ID {workerId} not found.");
+        }
+
+        _dbContext.Workers.Remove(workerEntity);
+        _dbContext.SaveChanges();
+    }
 }
