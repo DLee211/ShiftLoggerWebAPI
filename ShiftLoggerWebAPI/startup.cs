@@ -28,6 +28,8 @@ namespace ShiftLoggerWebAPI
 
             // Add services
             services.AddScoped<ShiftService>();
+            
+            services.AddScoped<WorkerService>();
 
             // Add Swagger
             services.AddSwaggerGen(c =>
