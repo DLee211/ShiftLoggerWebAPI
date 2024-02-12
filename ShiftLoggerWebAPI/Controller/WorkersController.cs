@@ -24,4 +24,16 @@ public class WorkersController:ControllerBase
         var workers = _workerService.GetAllWorkers();
         return Ok(workers);
     }
+    
+    /// <summary>
+    /// Gets worker by Id.
+    /// </summary>
+
+    [HttpGet("{id}")]
+    public ActionResult<Shift> GetShiftById(int id)
+    {
+        var shift = _workerService.GetWorkerById(id);
+        
+        return Ok(shift);
+    }
 }

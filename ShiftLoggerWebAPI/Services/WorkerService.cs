@@ -22,5 +22,26 @@ public class WorkerService
                 LastName = worker.LastName
             })
             .ToList();
-    } 
+    }
+
+    public WorkerDto GetWorkerById(int workerId)
+    {
+        var workerEntity = _dbContext.Workers
+            .FirstOrDefault(worker => worker.WorkerId == workerId);
+
+        if (workerEntity == null)
+        {
+            return null;
+        }
+        
+        var workerDto = new WorkerDto
+        {
+            WorkerId = workerEntity.WorkerId,
+            FirstName = workerEntity.FirstName,
+            LastName = workerEntity.LastName
+            // Add any other properties you need to map
+        };
+
+        return workerDto;
+    }
 }
