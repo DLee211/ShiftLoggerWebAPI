@@ -44,6 +44,22 @@ public class WorkerService
 
         return workerDto;
     }
+    
+    public void AddWorker(WorkerDto workerDto)
+    {
+        // Mapping WorkerDto to Worker entity
+        var workerEntity = new Worker
+        {
+            FirstName = workerDto.FirstName,
+            LastName = workerDto.LastName
+        };
+
+        // Add the worker entity to the database context
+        _dbContext.Workers.Add(workerEntity);
+            
+        // Save changes to the database
+        _dbContext.SaveChanges();
+    }
 
     public void DeleteWorker(int workerId)
     {

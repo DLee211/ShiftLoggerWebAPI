@@ -30,13 +30,32 @@ public class WorkersController:ControllerBase
     /// </summary>
 
     [HttpGet("{id}")]
-    public ActionResult<Shift> GetShiftById(int id)
+    public ActionResult<WorkerDto> GetWorkerById(int id)
     {
-        var shift = _workerService.GetWorkerById(id);
+        var worker = _workerService.GetWorkerById(id);
         
-        return Ok(shift);
+        return Ok(worker);
     }
-
+    
+    /// <summary>
+    /// Add worker
+    /// </summary>
+    /// <returns></returns>
+    // POST: api/workers
+    [HttpPost]
+    [HttpPost]
+    public IActionResult AddWorker([FromBody] WorkerDto workerDto)
+    {
+        try
+        {
+            _workerService.AddWorker(workerDto);
+            return CreatedAtAction(nameof(GetWorkerById), new { id = workerDto.WorkerId }, workerDto);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message); // Return 500 for unexpected errors
+        }
+    }
     /// <summary>
     ///  Delete worker by Id
     /// </summary>
@@ -59,6 +78,7 @@ public class WorkersController:ControllerBase
             return StatusCode(500, ex.Message); // Return 500 for other unexpected errors
         }
     }
+    
     /// <summary>
     ///  Update worker
     /// </summary>

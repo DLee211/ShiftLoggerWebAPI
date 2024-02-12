@@ -26,6 +26,9 @@ public class ShiftDbContext : DbContext
             entity.ToTable("Worker");
 
             entity.HasKey(e => e.WorkerId);
+            
+            entity.Property(e => e.WorkerId)
+                .ValueGeneratedOnAdd();
 
             entity.Property(e => e.FirstName).IsRequired();
             entity.Property(e => e.LastName).IsRequired();
