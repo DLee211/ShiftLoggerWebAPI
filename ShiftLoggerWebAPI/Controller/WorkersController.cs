@@ -59,4 +59,26 @@ public class WorkersController:ControllerBase
             return StatusCode(500, ex.Message); // Return 500 for other unexpected errors
         }
     }
+    /// <summary>
+    ///  Update worker
+    /// </summary>
+    /// <returns></returns>
+    // PUT: api/workers/{id}/name
+    [HttpPut("{id}/name")]
+    public IActionResult UpdateWorkerName(int id, [FromBody] WorkerDto model)
+    {
+        try
+        {
+            _workerService.UpdateWorkerName(id, model.FirstName, model.LastName);
+            return NoContent(); // Return 204 for successful update
+        }
+        catch (ArgumentException ex)
+        {
+            return NotFound(ex.Message); // Return 404 if worker with the specified id is not found
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message); // Return 500 for other unexpected errors
+        }
+    }
 }

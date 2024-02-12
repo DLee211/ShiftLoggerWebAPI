@@ -58,4 +58,19 @@ public class WorkerService
         _dbContext.Workers.Remove(workerEntity);
         _dbContext.SaveChanges();
     }
+
+    public void UpdateWorkerName(int workerId, string firstName, string lastName)
+    {
+        var workerEntity = _dbContext.Workers
+            .FirstOrDefault(worker => worker.WorkerId == workerId);
+        
+        if (workerEntity == null)
+        {
+            throw new ArgumentException($"Worker with ID {workerId} not found.");
+        }
+        workerEntity.FirstName = firstName;
+        workerEntity.LastName = lastName;
+
+        _dbContext.SaveChanges();
+    }
 }
