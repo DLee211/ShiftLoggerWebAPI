@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ShiftLoggerWebAPI.Configuration;
 using ShiftLoggerWebAPI.Models;
 
 namespace ShiftLoggerWebAPI;
@@ -13,7 +14,7 @@ public class ShiftDbContext : DbContext
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=workershifts.db;Integrated Security=True");
+        optionsBuilder.UseSqlServer(ServerConfiguration.DatabaseConnectionString);
     }
     
     public DbSet<Worker> Workers { get; set; }
