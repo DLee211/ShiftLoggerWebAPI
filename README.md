@@ -1,6 +1,6 @@
 # ShiftWebApi
 
-ShiftWebApi is a backend application designed to manage shifts data for workers. It provides a set of API endpoints for creating, retrieving, updating, and deleting shifts.
+ShiftWebApi is a backend application designed to manage shifts data for workers. It provides a set of API endpoints for creating, retrieving, updating, and deleting shifts/workers.
 
 ## Technologies Used
 
