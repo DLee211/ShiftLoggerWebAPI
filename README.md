@@ -20,7 +20,3 @@ To get started with the ShiftWebApi project, follow these steps:
 3. **Start the API**: Run the API project using Visual Studio or the `dotnet run` command.
 
 4. **Explore API Documentation**: Navigate to the Swagger UI to explore and test the API endpoints.
-
-## Contributing
-
-Contributions to the ShiftWebApi project are welcome! If you'd like to contribute, please fork the repository and submit a pull request with your changes.
