@@ -8,7 +8,6 @@ public class ServerConfiguration
         DatabaseConnectionString
     {
         get;
-    } = //"Server=(localdb)\\MSSQLLocalDB;Database=workershifts.db;Integrated Security=True";//Windows
-        $"Server=localhost,1433;Database=workershifts;User Id=SA;Password={password};TrustServerCertificate=True";//Mac
+    } = $"";
 
 }
